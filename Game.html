@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-UK">
+  <head>
+    <script>
+      let options = ["rock", "paper", "scissors"];
+
+      function computerPlay () {
+        let move = options[Math.floor(Math.random() * options.length)]
+        return move
+      }
+
+      function playRound(playerSelection, computerSelection) {
+        let a = playerSelection.toLowerCase();
+        let b = computerSelection;
+        let valid = options.includes(a);
+        if (valid != true) {
+          return "Incorrect input";
+        }
+        console.log(("Player: "), a);
+        console.log(("Computer: "), b);
+        if (a == b) {
+          return "draw";
+        }
+        if (a == "rock" && b == "scissors") {
+          return "win";
+        }
+        if (a == "scissors" && b == "paper") {
+          return "win";
+        }
+        if (a == "paper" && b == "rock") {
+          return "win";
+        }
+        if (b == "rock" && a == "scissors") {
+          return "lose";
+        }
+        if (b == "scissors" && a == "paper") {
+          return "lose";
+        }
+        if (b == "paper" && a == "rock") {
+          return "lose";
+        }
+        else {
+          return "draw";
+        }
+      }
+
+      let draw = 0
+      let win = 0
+      let lose = 0
+
+
+      function game () {
+        let computerSelection = computerPlay();
+        let playerSelection = prompt("Enter Rock, Paper or Scissors");
+        let result = (playRound(playerSelection, computerSelection));
+        if (result == "Incorrect input") {
+          game();
+        }
+        if (result == "draw") {
+          draw += 1;
+        } else if (result == "win") {
+          win += 1;
+        } else {
+          lose += 1;
+        }
+
+        console.log("You", result,"!  Score: ", draw, win, lose)
+      }
+      
+      for (let step = 0; step < 5; step++) {
+        game();
+      }
+      wincheck();
+
+      function wincheck () {
+        if (win == lose) {
+          console.log("The game was a draw!")
+        } else if (win > lose) {
+          console.log("You won the best of 5!")
+        } else {
+          console.log("The computer won the best of 5!")
+        }
+      }
+
+    </script>
+  </head>
+</html>
